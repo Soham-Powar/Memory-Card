@@ -4,19 +4,18 @@ function getRandomId() {
   return Math.floor(Math.random() * 643) + 1;
 }
 
-function extractData(dataObject) {
-  return dataObject.sprites.other.dream_world.front_default;
-}
-
 async function callPokemonAPI(id) {
-  const fetchURL = `https://pokeapi.co/api/v2/pokemon/${id}/`;
+  try {
+    const fetchURL = `https://pokeapi.co/api/v2/pokemon/${id}/`;
+    const response = await fetch(fetchURL);
+    const dataObject = await response.json();
 
-  const response = await fetch(fetchURL, {
-    mode: "cors",
-  });
-
-  const dataObject = await response.json();
-  return extractData(dataObject);
+    const image = dataObject.sprites.other.dream_world.front_default;
+    return image || null;
+  } catch (error) {
+    console.error(`Failed to fetch Pokémon ID ${id}:`, error);
+    return null;
+  }
 }
 
 export default async function getPokemonImages() {
