@@ -24,7 +24,6 @@ export default async function getPokemonImages() {
   for (let i = 1; i <= NO_OF_CARDS; i++) {
     promises.push(callPokemonAPI(getRandomId()));
   }
-  console.log(promises);
 
   return Promise.all(promises);
 }
