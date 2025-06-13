@@ -1,7 +1,17 @@
 const NO_OF_CARDS = 16;
 
+const alreadyUsedIDs = [];
+
 function getRandomId() {
-  return Math.floor(Math.random() * 643) + 1;
+  let id = Math.floor(Math.random() * 643) + 1;
+
+  // Keep generating until we find a new one
+  while (alreadyUsedIDs.includes(id)) {
+    id = Math.floor(Math.random() * 643) + 1;
+  }
+
+  alreadyUsedIDs.push(id);
+  return id;
 }
 
 async function callPokemonAPI(id) {
