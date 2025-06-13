@@ -30,7 +30,7 @@ export default function GameCard({ url, id, onFirstClick, setScore, setBestScore
 
 	return (
 		<div
-			className="image-container bg-amber-200 p-3 flex justify-center h-[200px]"
+			className="image-container bg-[radial-gradient(circle,_rgba(204,142,252,0)_0%,_rgba(204,142,252,0.2)_20%,_rgba(204,142,252,1)_100%)] p-3 flex justify-center h-[200px] border-2 border-[rgba(204,142,252,1)]"
 			onClick={handleClick}
 		>
 			<img src={url} alt={`pokemon-index-${id}`} className="h-[130px]" />
