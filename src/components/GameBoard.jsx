@@ -39,6 +39,11 @@ export default function GameBoard() {
 		}, 100);
 	}
 
+	function resetAllCards() {
+		setResetSignal(true);
+		setTimeout(() => setResetSignal(false), 100); // Reset the signal
+	}
+
 	return (
 		<>
 			<div>
@@ -46,7 +51,7 @@ export default function GameBoard() {
 				<ResetBtn
 					fetchImages={fetchImages}
 					setScore={setScore}
-					resetAllCards={() => setResetSignal(true)}
+					resetAllCards={resetAllCards}
 				/>
 			</div>
 			<div className="game-board grid-cols-4 grid gap-3 p-4 bg-pink-200">
@@ -65,7 +70,7 @@ export default function GameBoard() {
 							setBestScore={setBestScore}
 							resetSignal={resetSignal}
 							onFirstClick={handleFirstClick}
-							onLoss={handleLoss} // 👈 NEW PROP
+							onLoss={handleLoss}
 						/>
 					);
 				})}
