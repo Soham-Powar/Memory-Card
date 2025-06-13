@@ -1,5 +1,8 @@
-export default function ResetBtn() {
+export default function ResetBtn({ fetchImages, setScore }) {
 	return (
-		<button>Reset</button>
+		<button onClick={() => {
+			fetchImages();
+			setScore(0);
+		}}>Reset</button>
 	);
 }

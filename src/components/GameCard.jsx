@@ -1,18 +1,24 @@
 // GameCard.jsx
 import { useState } from "react";
 
-export default function GameCard({ url, id, onFirstClick, setScore, setBestScore, score }) {
+export default function GameCard({ url, id, onFirstClick, setScore, setBestScore, score, bestScore }) {
 	const [clicked, setClicked] = useState(false);
 
 	function handleClick() {
 		if (!clicked) {
 			setClicked(true);
-			setScore(score + 1);
-			onFirstClick();
+
+			const newScore = score + 1;
+			setScore(newScore);
+
+			if (bestScore <= newScore) {
+				setBestScore(newScore);
+			}
+
+			onFirstClick(); //to shuffle - method from parent(GameBoard)
 		} else {
-			alert('You lose son.')
+			alert('You lose son.');
 			setScore(0);
-			setBestScore(score);
 		}
 	}
 
