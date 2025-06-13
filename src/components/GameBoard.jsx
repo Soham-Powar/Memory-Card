@@ -35,7 +35,7 @@ export default function GameBoard() {
 					//get the id of the pokemon (returned by api)
 					const number = url.split('/').pop().split('.')[0];
 
-					return <GameCard key={number} url={url} id={number} onFirstClick={handleFirstClick} setScore={setScore} setBestScore={setBestScore} />
+					return <GameCard key={number} url={url} id={number} onFirstClick={handleFirstClick} setScore={setScore} setBestScore={setBestScore} score={score} />
 				})}
 			</div>
 		</>
