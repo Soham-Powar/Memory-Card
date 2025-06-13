@@ -1,13 +1,12 @@
 // GameCard.jsx
 import { useState, useEffect } from "react";
 
-export default function GameCard({ url, id, onFirstClick, setScore, setBestScore, score, bestScore, resetSignal, setResetSignal }) {
+export default function GameCard({ url, id, onFirstClick, setScore, setBestScore, score, bestScore, resetSignal, onLoss }) {
 	const [clicked, setClicked] = useState(false);
 
 	useEffect(() => {
 		if (resetSignal) {
 			setClicked(false);
-			setResetSignal(false);
 		}
 	}, [resetSignal]);
 
@@ -24,9 +23,8 @@ export default function GameCard({ url, id, onFirstClick, setScore, setBestScore
 
 			onFirstClick(); //to shuffle - method from parent(GameBoard)
 		} else {
-			setResetSignal(true);
 			alert('You lose son.');
-			setScore(0);
+			onLoss();
 		}
 	}
 
