@@ -29,19 +29,45 @@ export default function GameBoard() {
 		setImageURLs((prev) => shuffleArray(prev));
 	}
 
+	function handleLoss() {
+		setResetSignal(true);
+		setScore(0);
+
+		// allow all GameCards to reset before clearing the signal
+		setTimeout(() => {
+			setResetSignal(false);
+		}, 100);
+	}
 
 	return (
 		<>
 			<div>
 				<ScoreBoard score={score} bestScore={bestScore} />
-				<ResetBtn fetchImages={fetchImages} setScore={setScore} resetAllCards={() => setResetSignal(true)} />
+				<ResetBtn
+					fetchImages={fetchImages}
+					setScore={setScore}
+					resetAllCards={() => setResetSignal(true)}
+				/>
 			</div>
 			<div className="game-board grid-cols-4 grid gap-3 p-4 bg-pink-200">
 				{imageURLs.map((url) => {
 					//get the id of the pokemon (returned by api) to use it as key.
 					const number = url.split('/').pop().split('.')[0];
 
-					return <GameCard key={number} url={url} id={number} onFirstClick={handleFirstClick} setScore={setScore} setBestScore={setBestScore} score={score} bestScore={bestScore} resetSignal={resetSignal} setResetSignal={setResetSignal} />
+					return (
+						<GameCard
+							key={number}
+							url={url}
+							id={number}
+							score={score}
+							bestScore={bestScore}
+							setScore={setScore}
+							setBestScore={setBestScore}
+							resetSignal={resetSignal}
+							onFirstClick={handleFirstClick}
+							onLoss={handleLoss} // 👈 NEW PROP
+						/>
+					);
 				})}
 			</div>
 		</>
