@@ -28,7 +28,7 @@ export default function GameBoard() {
 		setImageURLs(data);
 		setTimeout(() => {
 			setLoading(false);
-		}, 1500)
+		}, 1200)
 	}
 
 
