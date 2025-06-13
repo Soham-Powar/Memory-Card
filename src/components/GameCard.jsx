@@ -1,15 +1,18 @@
 // GameCard.jsx
 import { useState } from "react";
 
-export default function GameCard({ url, id, onFirstClick }) {
+export default function GameCard({ url, id, onFirstClick, setScore, setBestScore, score }) {
 	const [clicked, setClicked] = useState(false);
 
 	function handleClick() {
 		if (!clicked) {
 			setClicked(true);
+			setScore(score + 1);
 			onFirstClick();
 		} else {
-			console.log('already clicked');
+			alert('You lose son.')
+			setScore(0);
+			setBestScore(score);
 		}
 	}
 
