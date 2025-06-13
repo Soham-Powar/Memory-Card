@@ -23,7 +23,7 @@ export default function GameCard({ url, id, onFirstClick, setScore, setBestScore
 
 			onFirstClick(); //to shuffle - method from parent(GameBoard)
 		} else {
-			alert('You lose son.');
+			alert('You lose.');
 			onLoss();
 		}
 	}
