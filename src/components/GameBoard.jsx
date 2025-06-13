@@ -29,22 +29,19 @@ export default function GameBoard() {
 		setImageURLs((prev) => shuffleArray(prev));
 	}
 
-	function resetAllCards() {
-		setResetSignal(false);
-	}
 
 	return (
 		<>
 			<div>
 				<ScoreBoard score={score} bestScore={bestScore} />
-				<ResetBtn fetchImages={fetchImages} setScore={setScore} resetAllCards={resetAllCards} />
+				<ResetBtn fetchImages={fetchImages} setScore={setScore} resetAllCards={() => setResetSignal(true)} />
 			</div>
 			<div className="game-board grid-cols-4 grid gap-3 p-4 bg-pink-200">
 				{imageURLs.map((url) => {
 					//get the id of the pokemon (returned by api) to use it as key.
 					const number = url.split('/').pop().split('.')[0];
 
-					return <GameCard key={number} url={url} id={number} onFirstClick={handleFirstClick} setScore={setScore} setBestScore={setBestScore} score={score} bestScore={bestScore} resetSignal={resetSignal} />
+					return <GameCard key={number} url={url} id={number} onFirstClick={handleFirstClick} setScore={setScore} setBestScore={setBestScore} score={score} bestScore={bestScore} resetSignal={resetSignal} setResetSignal={setResetSignal} />
 				})}
 			</div>
 		</>
