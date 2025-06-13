@@ -14,15 +14,16 @@ export default function GameBoard() {
 	const [score, setScore] = useState(0);
 	const [bestScore, setBestScore] = useState(0);
 
+	async function fetchImages() {
+		const data = await fetchData();
+		setImageURLs(data);
+	}
+
 	useEffect(() => {
-		(async () => {
-			const data = await fetchData();
-			setImageURLs(data);
-		})();
+		fetchImages();
 	}, []);
 
 	function handleFirstClick() {
-		console.log('first click — shuffling images!');
 		setImageURLs((prev) => shuffleArray(prev));
 	}
 
@@ -30,14 +31,14 @@ export default function GameBoard() {
 		<>
 			<div>
 				<ScoreBoard score={score} bestScore={bestScore} />
-				<ResetBtn />
+				<ResetBtn fetchImages={fetchImages} setScore={setScore} />
 			</div>
 			<div className="game-board grid-cols-4 grid gap-3 p-4 bg-pink-200">
 				{imageURLs.map((url) => {
 					//get the id of the pokemon (returned by api) to use it as key.
 					const number = url.split('/').pop().split('.')[0];
 
-					return <GameCard key={number} url={url} id={number} onFirstClick={handleFirstClick} setScore={setScore} setBestScore={setBestScore} score={score} />
+					return <GameCard key={number} url={url} id={number} onFirstClick={handleFirstClick} setScore={setScore} setBestScore={setBestScore} score={score} bestScore={bestScore} />
 				})}
 			</div>
 		</>
