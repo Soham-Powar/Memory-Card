@@ -11,7 +11,7 @@ export default function ResetBtn({ fetchImages, setScore, resetAllCards }) {
 
 	return (
 		<button
-			className="px-4 py-2 bg-blue-400 text-white font-semibold rounded"
+			className="px-4 py-2 bg-blue-400 text-black font-semibold rounded"
 			onClick={handleReset}
 		>
 			Reset
