@@ -19,6 +19,7 @@ export default function GameCard({ url, id, onFirstClick, setScore, setBestScore
 
 			if (bestScore <= newScore) {
 				setBestScore(newScore);
+				localStorage.setItem('bestScore', newScore);
 			}
 
 			onFirstClick(); //to shuffle - method from parent(GameBoard)

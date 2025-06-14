@@ -12,9 +12,13 @@ import loadingGif from '../assets/loading.gif'
 
 
 export default function GameBoard() {
+	let oldBestScore = localStorage.getItem('bestScore');
+	if (!oldBestScore) {
+		oldBestScore = 0;
+	}
 	const [imageURLs, setImageURLs] = useState([]);
 	const [score, setScore] = useState(0);
-	const [bestScore, setBestScore] = useState(0);
+	const [bestScore, setBestScore] = useState(oldBestScore);
 	const [resetSignal, setResetSignal] = useState(false);
 	const [loading, setLoading] = useState(true);
 
