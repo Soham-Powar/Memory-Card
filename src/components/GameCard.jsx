@@ -16,6 +16,9 @@ export default function GameCard({ url, id, onFirstClick, setScore, setBestScore
 
 			const newScore = score + 1;
 			setScore(newScore);
+			if (newScore === 16) {
+				alert('You win!');
+			}
 
 			if (bestScore <= newScore) {
 				setBestScore(newScore);
